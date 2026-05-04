@@ -265,7 +265,7 @@ elif page == "💬 Chat":
                 main_num, sec_num, all_nums = _smart_num(df)
                 main_cat = useful_cat[0] if useful_cat else None
                 sec_cat  = useful_cat[1] if len(useful_cat) >= 2 else None
-
+                
                 suggestions = []
                 if main_num:
                     suggestions.append(f"What is total {main_num}?")
@@ -281,8 +281,8 @@ elif page == "💬 Chat":
                 if main_cat:
                     suggestions.append(f"How many unique values in {main_cat}?")
                 if len(all_nums) >= 2:
-                    suggestions.append(f"correlation between {all_nums[0]} and {all_nums[1]}?")
-
+                    suggestions.append(f"Correlation between {all_nums[0]} and {all_nums[1]}?")
+                
                 for s in suggestions:
                     if st.button(s, key=f"suggest_{s}", use_container_width=True):
                         st.session_state["prefill_question"] = s
