@@ -268,8 +268,8 @@ elif page == "💬 Chat":
 
                 suggestions = []
                 if main_num:
-                    suggestions.append(f"Total {main_num} kitna hai?")
-                    suggestions.append(f"Average {main_num} kya hai?")
+                    suggestions.append(f"What is total {main_num}?")
+                    suggestions.append(f"What is average {main_num}?")
                 if main_cat and main_num:
                     suggestions.append(f"Top 5 {main_cat} by {main_num}")
                 if main_cat and main_num and sec_num:
@@ -279,9 +279,9 @@ elif page == "💬 Chat":
                 if sec_cat and main_num:
                     suggestions.append(f"{sec_cat} wise {main_num}")
                 if main_cat:
-                    suggestions.append(f"{main_cat} mein kitni unique values hain?")
+                    suggestions.append(f"How many unique values in {main_cat}?")
                 if len(all_nums) >= 2:
-                    suggestions.append(f"{all_nums[0]} aur {all_nums[1]} ka correlation?")
+                    suggestions.append(f"correlation between {all_nums[0]} and {all_nums[1]}?")
 
                 for s in suggestions:
                     if st.button(s, key=f"suggest_{s}", use_container_width=True):
