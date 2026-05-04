@@ -105,7 +105,7 @@ if page == "📊 Dashboard":
             for col_widget, (label, value) in zip(card_cols, kpis.items()):
                 col_widget.metric(label=label, value=value)
         else:
-            st.warning("KPI columns auto-detect nahi ho sake — dataset check karein.")
+            st.warning("KPI columns could not be auto-detected — please check the dataset.")
 
         st.divider()
         st.subheader("📈 Data Charts")
@@ -153,7 +153,7 @@ if page == "📊 Dashboard":
                         question=f"top {prod_col} by {num2}", df=df,
                         intent="ranking", cols={"primary": prod_col, "secondary": num2})
                 if fig2: st.plotly_chart(fig2, use_container_width=True)
-                else:    st.info("Chart generate nahi ho saka.")
+                else:    st.info("Chart could not be generated.")
 
             date_col = detect_date_column(df)
             if date_col:
@@ -163,7 +163,7 @@ if page == "📊 Dashboard":
                     intent="trend", cols={"primary": rev_col, "secondary": None})
                 if fig3: st.plotly_chart(fig3, use_container_width=True)
         else:
-            st.info("Charts ke liye numeric aur categorical columns dono chahiye.")
+            st.info("both numeric and categorical columns are needed for charts.")
 
         st.divider()
         st.subheader("📋 Data Preview")
@@ -226,7 +226,7 @@ elif page == "💬 Chat":
     st.header("💬 Chat with your Data")
 
     if df is None:
-        st.info("⬅️ Pehle sidebar se dataset upload karein.")
+        st.info("⬅️ first upload data from sidebar.")
     else:
         st.caption(f"📂 Loaded: `{dataset_name}` — {df.shape[0]} rows × {df.shape[1]} columns")
 
@@ -311,7 +311,7 @@ elif page == "💬 Chat":
                         st.code(msg["query"], language="python")
 
         prefill         = st.session_state.pop("prefill_question", "")
-        question        = st.chat_input("Kuch bhi poocho apne data ke baare mein...")
+        question        = st.chat_input("ask anything about your data...")
         active_question = prefill or question
 
         if active_question:
@@ -323,7 +323,7 @@ elif page == "💬 Chat":
             context = get_relevant_memory(active_question, dataset_name)
 
             with st.chat_message("assistant"):
-                with st.spinner("Soch raha hun..."):
+                with st.spinner("thinking..."):
                     answer, query, intent, cols = ask_gemma(active_question, df, context)
                     tbl = compute_table(active_question, df, intent, cols)
                     fig = generate_chart(active_question, df, intent, cols)
