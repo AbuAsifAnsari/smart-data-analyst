@@ -1,0 +1,26 @@
+# Smart Data Analyst — .gitignore
+
+# ── Secrets ───────────────────────────────────────────────────
+.env
+*.key
+
+# ── Runtime folders (cloud pe temporary hote hain) ────────────
+uploads/
+memory/
+
+# ── Python cache ──────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# ── Streamlit local config ────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── OS files ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Jupyter (agar koi notebook ho) ───────────────────────────
+.ipynb_checkpoints/
+*.ipynb
