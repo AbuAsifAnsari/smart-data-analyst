@@ -1,0 +1,176 @@
+# 🧠 Smart Data Analyst
+
+An AI-powered data analysis web app built with Streamlit and Gemini API.  
+Upload any CSV or Excel file and instantly get KPIs, charts, insights, and a downloadable report.
+
+---
+
+## 🚀 Live Demo
+
+👉 **[Try it here](https://your-app.streamlit.app)** ← (deploy ke baad update karna)
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📂 **File Upload** | CSV and Excel (.xlsx, .xls) support |
+| 📊 **Auto Dashboard** | KPI cards + charts auto-generated from your data |
+| 💬 **Chat with Data** | Ask questions in plain English — get instant answers |
+| 🤖 **AI-Powered** | Gemini API (primary) + Ollama local (fallback) |
+| 🐍 **Python Compute** | Accurate answers via Pandas — not just LLM guesses |
+| 📈 **Smart Charts** | Auto chart type selection (bar, line, pie, scatter) |
+| 📥 **PDF Report** | Download full report with KPIs, charts, and Q&A |
+| 📊 **Excel Report** | Multi-sheet Excel with raw data, stats, and chat history |
+| 🧠 **RAG Memory** | Remembers past Q&As for better context |
+| 💾 **Chat History** | Persists across sessions per dataset |
+
+---
+
+## 🖥️ Screenshots
+
+> Dashboard             |  Chat with Data
+> :-------------------------:|:-------------------------:
+> KPI Cards + Auto Charts |  Q&A + Table + Chart
+
+---
+
+## 🛠️ Tech Stack
+
+```
+Frontend     →  Streamlit
+AI (Primary) →  Gemini 1.5 Flash API (free tier)
+AI (Fallback)→  Ollama gemma3:1b (local)
+Compute      →  Python / Pandas
+Charts       →  Plotly
+PDF Report   →  fpdf2 + kaleido
+Excel Report →  openpyxl
+Memory       →  JSON (RAG-style)
+```
+
+---
+
+## ⚡ Quick Start (Local)
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/yourusername/smart-data-analyst.git
+cd smart-data-analyst
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Add your Gemini API key
+Create a `.env` file in project root:
+```
+GEMINI_API_KEY=your_api_key_here
+```
+Get your free key at → [aistudio.google.com](https://aistudio.google.com)
+
+### 4. Run the app
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📁 Project Structure
+
+```
+smart_data_analyst/
+├── app.py                    # Main Streamlit app
+├── requirements.txt
+├── .env                      # API key (not in repo)
+│
+├── utils/
+│   ├── data_loader.py        # CSV/Excel file handler
+│   ├── ollama_chat.py        # AI engine (Gemini + Ollama)
+│   ├── dashboard.py          # KPI detection + compute
+│   ├── chart_agent.py        # Auto chart generator
+│   ├── memory_engine.py      # RAG memory (JSON)
+│   ├── history_manager.py    # Chat history persistence
+│   └── report_generator.py   # PDF + Excel reports
+│
+├── memory/                   # Auto-created at runtime
+│   ├── qa_log.json
+│   └── chat_history.json
+│
+└── uploads/                  # Auto-created at runtime
+```
+
+---
+
+## 🤖 How the AI Works
+
+```
+User Question
+      ↓
+Intent Detection (wise/by/top N/average...)
+      ↓
+Python Compute (Pandas — fast & accurate)
+      ↓ if complex question
+Gemini API (primary — better reasoning)
+      ↓ if API limit
+Ollama gemma3:1b (local fallback)
+      ↓
+Answer + Table + Chart + Python Code
+```
+
+---
+
+## 📊 Supported Question Types
+
+```
+✅ "Total revenue kitna hai?"
+✅ "Top 5 products by revenue"
+✅ "Region wise revenue vs quantity"
+✅ "Average order value kya hai?"
+✅ "Kitni missing values hain?"
+✅ "Revenue aur quantity ka correlation?"
+✅ "Show me a chart of sales by category"
+```
+
+---
+
+## 🌐 Deploy on Streamlit Cloud
+
+1. Push code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your repo → select `app.py`
+4. Add secret: `GEMINI_API_KEY = "your_key"`
+5. Deploy ✅
+
+---
+
+## 📦 Requirements
+
+```
+streamlit==1.46.1
+pandas==2.2.2
+numpy==2.1.0
+openpyxl==3.1.5
+plotly==6.7.0
+kaleido==0.2.1
+fpdf2==2.8.7
+google-generativeai==0.8.6
+python-dotenv==1.2.1
+requests==2.33.1
+```
+
+---
+
+## 👨‍💻 Built By
+
+**Abu Aasif Ansari** — Data Analyst & AI Developer  
+📌 Available for freelance projects on [Fiverr](https://fiverr.com)  
+💼 [LinkedIn](https://linkedin.com/in/yourprofile)
+
+---
+
+## 📄 License
+
+MIT License — free to use and modify.
