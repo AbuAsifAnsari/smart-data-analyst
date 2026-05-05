@@ -7,7 +7,7 @@ Upload any CSV or Excel file and instantly get KPIs, charts, insights, and a dow
 
 ## 🚀 Live Demo
 
-👉 **[Try it here](https://your-app.streamlit.app)** ← (deploy ke baad update karna)
+👉 **[Try it here](https://smart-data-analyst-ahkz32vjd6dzvhmexkrhdm.streamlit.app/)**
 
 ---
 
@@ -55,7 +55,7 @@ Memory       →  JSON (RAG-style)
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/smart-data-analyst.git
+git clone https://github.com/AbuAsifAnsari/smart-data-analyst.git
 cd smart-data-analyst
 ```
 
@@ -125,13 +125,13 @@ Answer + Table + Chart + Python Code
 ## 📊 Supported Question Types
 
 ```
-✅ "Total revenue kitna hai?"
-✅ "Top 5 products by revenue"
-✅ "Region wise revenue vs quantity"
-✅ "Average order value kya hai?"
-✅ "Kitni missing values hain?"
-✅ "Revenue aur quantity ka correlation?"
-✅ "Show me a chart of sales by category"
+✅ What is the total revenue?
+✅ Top 5 products by revenue
+✅ Region wise revenue vs quantity
+✅ What is the average order value?
+✅ How many missing values are there?
+✅ Correlation between revenue and quantity?
+✅ Show me a chart of sales by category
 ```
 
 ---
@@ -166,8 +166,8 @@ requests==2.33.1
 ## 👨‍💻 Built By
 
 **Abu Aasif Ansari** — Data Analyst & AI Developer  
-📌 Available for freelance projects on [Fiverr](https://fiverr.com)  
-💼 [LinkedIn](https://linkedin.com/in/yourprofile)
+📌 Available for freelance projects on [Fiverr](https://www.fiverr.com/s/vvqR8eq)  
+💼 [LinkedIn](https://www.linkedin.com/in/abuaasif)
 
 ---
 
