@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from custom_css import CUSTOM_CSS
 from utils.data_loader import load_file, get_data_summary
 from utils.ollama_chat import (ask_gemma, get_llm_status, find_best_column,
                                 detect_date_column, compute_table)
@@ -10,6 +11,8 @@ from utils.history_manager import save_message, load_history, clear_history, get
 from utils.report_generator import generate_excel, generate_pdf
 
 st.set_page_config(page_title="Smart Data Analyst", layout="wide")
+st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+
 
 # ── ID column filter helper ───────────────────────────────────────────────────
 _ID_KW = ["id", "_id", "code", "no.", "number", "num",
