@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from custom_css import CUSTOM_CSS
+from custom_css import get_css
 from utils.data_loader import load_file, get_data_summary
 from utils.ollama_chat import (ask_gemma, get_llm_status, find_best_column,
                                 detect_date_column, compute_table)
@@ -11,21 +11,17 @@ from utils.history_manager import save_message, load_history, clear_history, get
 from utils.report_generator import generate_excel, generate_pdf
 
 st.set_page_config(page_title="Smart Data Analyst", layout="wide")
-st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-
 
 # ── ID column filter helper ───────────────────────────────────────────────────
 _ID_KW = ["id", "_id", "code", "no.", "number", "num",
           "invoice", "serial", "index", "key", "order"]
 
 def _useful_cats(df):
-    """Categorical columns se ID-like columns filter karo."""
     cat_cols = df.select_dtypes(include='object').columns.tolist()
     filtered = [c for c in cat_cols if not any(kw in c.lower() for kw in _ID_KW)]
-    return filtered if filtered else cat_cols  # fallback
+    return filtered if filtered else cat_cols
 
 def _smart_num(df):
-    """Revenue/qty prefer karo, warna pehla numeric."""
     num_cols = df.select_dtypes(include='number').columns.tolist()
     rev  = next((c for c in num_cols if any(k in c.lower()
                  for k in ["revenue","sales","amount","income","profit"])), None)
@@ -71,6 +67,10 @@ with st.sidebar:
     st.caption(f"Mode: {status['mode']}")
     st.divider()
 
+    # ── Day / Night toggle ────────────────────────────────────────────────────
+    dark_mode = st.toggle("🌙 Dark Mode", value=True, key="dark_mode")
+    st.divider()
+
     sessions = get_all_sessions()
     if sessions:
         st.markdown("**📂 Past Sessions:**")
@@ -91,6 +91,9 @@ with st.sidebar:
     if st.session_state.get("messages"):
         total_q = len(st.session_state.messages) // 2
         st.caption(f"{total_q} question{'s' if total_q != 1 else ''} asked")
+
+# ── Inject CSS AFTER toggle is defined ───────────────────────────────────────
+st.markdown(get_css(dark_mode=dark_mode), unsafe_allow_html=True)
 
 
 # ── Dashboard Page ─────────────────────────────────────────────────────────────
@@ -263,12 +266,11 @@ elif page == "💬 Chat":
                 st.divider()
                 st.markdown("**Try asking:**")
 
-                # ── Smart suggestions — ID columns nahi aayenge ───────────────
                 useful_cat = _useful_cats(df)
                 main_num, sec_num, all_nums = _smart_num(df)
                 main_cat = useful_cat[0] if useful_cat else None
                 sec_cat  = useful_cat[1] if len(useful_cat) >= 2 else None
-                
+
                 suggestions = []
                 if main_num:
                     suggestions.append(f"What is total {main_num}?")
@@ -285,7 +287,7 @@ elif page == "💬 Chat":
                     suggestions.append(f"How many unique values in {main_cat}?")
                 if len(all_nums) >= 2:
                     suggestions.append(f"Correlation between {all_nums[0]} and {all_nums[1]}?")
-                
+
                 for s in suggestions:
                     if st.button(s, key=f"suggest_{s}", use_container_width=True):
                         st.session_state["prefill_question"] = s
@@ -349,13 +351,3 @@ elif page == "💬 Chat":
             })
             save_message(dataset_name, "assistant", answer, query)
             save_qa(active_question, answer, dataset_name)
-
-
-
-
-
-
-
-
-
-
