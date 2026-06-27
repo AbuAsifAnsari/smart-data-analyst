@@ -1,9 +1,14 @@
 import pandas as pd
+import chardet
+
 
 def load_file(uploaded_file):
     filename = uploaded_file.name
     if filename.endswith(".csv"):
-        df = pd.read_csv(uploaded_file)
+        raw = uploaded_file.read()
+        encoding = chardet.detect(raw)['encoding']
+        uploaded_file.seek(0)
+        df = pd.read_csv(uploaded_file, encoding=encoding)
     elif filename.endswith((".xlsx", ".xls")):
         df = pd.read_excel(uploaded_file)
     else:

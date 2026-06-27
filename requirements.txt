@@ -22,3 +22,5 @@ google-generativeai==0.8.6
 # ── Environment / Utils ───────────────────────────────────────
 python-dotenv==1.2.1
 requests==2.33.1
+
+chardet 
